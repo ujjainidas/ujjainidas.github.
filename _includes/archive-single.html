@@ -33,6 +33,12 @@
         <a href="{{ post.paperurl }}">{{ title }}</a>
       {% endif %}
     </h2>
+
+    {% if post.citation and site.read_more != 'enabled' %}
+    <p>{{ post.citation | markdownify }}</p>
+    <!-- {% elsif post.excerpt and site.read_more == 'enabled' %}
+    <p class="archive__item-excerpt" itemprop="description"><p>{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}<strong><a href="{{ base_path }}{{ post.url }}" rel="permalink"> Read more</a></strong></p></p> -->
+    {% endif %}
     
     {% if post.read_time %}
       <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> {% include read-time.html %}</p>
@@ -48,12 +54,6 @@
 
     {% if post.excerpt and site.read_more != 'enabled' %}
     <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</p>
-    {% endif %}
-    
-    {% if post.citation and site.read_more != 'enabled' %}
-    <p>{{ post.citation | markdownify }}</p>
-    <!-- {% elsif post.excerpt and site.read_more == 'enabled' %}
-    <p class="archive__item-excerpt" itemprop="description"><p>{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}<strong><a href="{{ base_path }}{{ post.url }}" rel="permalink"> Read more</a></strong></p></p> -->
     {% endif %}
     
     <!-- {% if post.citation and post.paperurl and post.slidesurl and post.bibtexurl %}
